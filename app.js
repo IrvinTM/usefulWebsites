@@ -1,30 +1,21 @@
-const express = require("express");
-const data = require("./data.json");
+import {createRequire} from 'node:module';
+import express from 'express'
+import { readJson } from './utils.js'
+import { webRouter } from './routes/websites.js'
+import { drouter } from './routes/default.js'
+import { corsMiddleware } from './middlewares/cors.js'
+const data = readJson('./data.json')
 
-const app = express();
-app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send('<h1>Usefull api</h1>');
-});
+const app = express()
+app.disable('x-powered-by')
+app.use(express.json())
+app.use(corsMiddleware())
 
-app.get("/websites", (req, res) => {
-    const { category } = req.query;
-  
-    if (category) {
-        const websites = data.resources.find(resource => resource.category.toLowerCase() === category.toLowerCase());
-        if (websites) {
-          res.send(websites.sites);
-        } else {
-          res.status(404).send("Category not found");
-        }
-      } else {
-        res.send(data.resources);
-      }
-}
-);
+app.use('/websites', webRouter)
+app.use('/', drouter)
 
-const port = process.env.PORT ?? 3000;
+const port = process.env.PORT ?? 2222;
 //comment
 
 app.listen(port, () => {

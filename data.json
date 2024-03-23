@@ -1,122 +1,106 @@
-{
-  "resources": [
-    {
-      "category": "Books",
-      "sites": [
-        {
-          "name": "ePubLibre",
-          "url": "https://epublibre.org/",
-          "description": "Plataforma para descargar libros en formato ePub de manera gratuita.",
-          "registration_required": false
-        },
-        {
-          "name": "Project Gutenberg",
-          "url": "https://www.gutenberg.org/",
-          "description": "Una de las mayores colecciones de libros electrónicos gratuitos. Ofrece libros clásicos y de dominio público.",
-          "registration_required": false
-        }
-      ]
-    },
-    {
-      "category": "PDF Converters",
-      "sites": [
-        {
-          "name": "I Love PDF",
-          "url": "https://www.ilovepdf.com/",
-          "description": "Herramienta en línea para convertir y editar archivos PDF.",
-          "registration_required": false
-        },
-        {
-          "name": "TinyWow",
-          "url": "https://tinywow.com/",
-          "description": "Plataforma para convertir archivos PDF de forma rápida y sencilla.",
-          "registration_required": false
-        },
-        {
-          "name": "CloudConvert",
-          "url": "https://cloudconvert.com/",
-          "description": "Servicio en línea para convertir entre diferentes formatos de archivo, incluidos PDF.",
-          "registration_required": true
-        }
-      ]
-    },
-    {
-      "category": "Torrents",
-      "sites": [
-        {
-          "name": "The Pirate Bay",
-          "url": "https://thepiratebay.org/",
-          "description": "Uno de los sitios más populares para encontrar torrents de películas, música, juegos, software y más.",
-          "registration_required": false
-        }
-      ]
-    },
-    {
-      "category": "Music",
-      "sites": [
-        {
-          "name": "YouTube",
-          "url": "https://www.youtube.com/",
-          "description": "Plataforma de videos en línea que ofrece una amplia variedad de música.",
-          "registration_required": false
-        }
-      ]
-    },
-    {
-      "category": "Images",
-      "sites": [
-        {
-          "name": "Pexels",
-          "url": "https://www.pexels.com/",
-          "description": "Banco de imágenes gratuitas de alta calidad.",
-          "registration_required": false
-        },
-        {
-          "name": "Unsplash",
-          "url": "https://unsplash.com/",
-          "description": "Plataforma que ofrece fotografías de alta resolución y libres de derechos de autor.",
-          "registration_required": false
-        }
-      ]
-    },
-    {
-      "category": "AI",
-      "sites": [
-        {
-          "name": "OpenAI Chat",
-          "url": "https://chat.openai.com",
-          "description": "Plataforma de inteligencia artificial que ofrece herramientas para desarrollar y desplegar modelos de lenguaje.",
-          "registration_required": true
-        },
-        {
-          "name": "Grammarly",
-          "url": "https://www.grammarly.com/",
-          "description": "Herramienta de corrección gramatical y ortográfica basada en inteligencia artificial.",
-          "registration_required": true
-        }
-      ]
-    },
-    {
-      "category": "File Transfer",
-      "sites": [
-        {
-          "name": "Snapdrop",
-          "url": "https://snapdrop.net/",
-          "description": "Servicio para transferir archivos de forma segura entre dispositivos en la misma red local.",
-          "registration_required": false
-        }
-      ]
-    },
-    {
-      "category": "Virus Scan",
-      "sites": [
-        {
-          "name": "VirusTotal",
-          "url": "https://www.virustotal.com/",
-          "description": "Herramienta en línea que analiza archivos y URLs en busca de virus y malware.",
-          "registration_required": false
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": "e8c09d63-24e9-44f2-8b00-43ce5a06a6cf",
+    "name": "ePubLibre",
+    "category": ["Books"],
+    "url": "https://epublibre.org/",
+    "description": "Plataforma para descargar libros en formato ePub de manera gratuita.",
+    "registration_required": false
+  },
+  {
+    "id": "619b1054-61a9-4ab5-ad36-7db9c13e639c",
+    "name": "Project Gutenberg",
+    "category": ["Books"],
+    "url": "https://www.gutenberg.org/",
+    "description": "Una de las mayores colecciones de libros electrónicos gratuitos. Ofrece libros clásicos y de dominio público.",
+    "registration_required": false
+  },
+  {
+    "id": "95caa72e-f2bf-4abe-95c5-01804b48d8bd",
+    "name": "I Love PDF",
+    "category": ["PDF Converters"],
+    "url": "https://www.ilovepdf.com/",
+    "description": "Herramienta en línea para convertir y editar archivos PDF.",
+    "registration_required": false
+  },
+  {
+    "id": "1daa8ea5-f7f4-4aa1-aad6-af82ed41061d",
+    "name": "TinyWow",
+    "category": ["PDF Converters"],
+    "url": "https://tinywow.com/",
+    "description": "Plataforma para convertir archivos PDF de forma rápida y sencilla.",
+    "registration_required": false
+  },
+  {
+    "id": "ad8e40b3-712c-4664-8028-4c95a07598b5",
+    "name": "CloudConvert",
+    "category": ["PDF Converters"],
+    "url": "https://cloudconvert.com/",
+    "description": "Servicio en línea para convertir entre diferentes formatos de archivo, incluidos PDF.",
+    "registration_required": true
+  },
+  {
+    "id": "b7ee3408-2ec4-43a0-b5a2-befba2b1608e",
+    "name": "The Pirate Bay",
+    "category": ["Torrents"],
+    "url": "https://thepiratebay.org/",
+    "description": "Uno de los sitios más populares para encontrar torrents de películas, música, juegos, software y más.",
+    "registration_required": false
+  },
+  {
+    "id": "1f2e93d4-fac6-41b4-be92-068769e1926e",
+    "name": "YouTube",
+    "category": ["Music"],
+    "url": "https://www.youtube.com/",
+    "description": "Plataforma de videos en línea que ofrece una amplia variedad de música.",
+    "registration_required": false
+  },
+  {
+    "id": "bda690b1-9fe9-446c-9d9f-b9ba1af15471",
+    "name": "Pexels",
+    "category": ["Images"],
+    "url": "https://www.pexels.com/",
+    "description": "Banco de imágenes gratuitas de alta calidad.",
+    "registration_required": false
+  },
+  {
+    "id": "884018db-fb97-421a-8ff5-b1b145e3927e",
+    "name": "Unsplash",
+    "category": ["Images"],
+    "url": "https://unsplash.com/",
+    "description": "Plataforma que ofrece fotografías de alta resolución y libres de derechos de autor.",
+    "registration_required": false
+  },
+  {
+    "id": "f9e9ea8c-8249-4e67-8885-29fab8f274bf",
+    "name": "OpenAI Chat",
+    "category": ["AI"],
+    "url": "https://chat.openai.com",
+    "description": "Plataforma de inteligencia artificial que ofrece herramientas para desarrollar y desplegar modelos de lenguaje.",
+    "registration_required": true
+  },
+  {
+    "id": "c9b04c4e-16fa-4727-9932-214d084c58b5",
+    "name": "Grammarly",
+    "category": ["AI"],
+    "url": "https://www.grammarly.com/",
+    "description": "Herramienta de corrección gramatical y ortográfica basada en inteligencia artificial.",
+    "registration_required": true
+  },
+  {
+    "id": "93e279e8-5c49-43bd-a13e-5760aaa64b4c",
+    "name": "Snapdrop",
+    "category": ["File Transfer"],
+    "url": "https://snapdrop.net/",
+    "description": "Servicio para transferir archivos de forma segura entre dispositivos en la misma red local.",
+    "registration_required": false
+  },
+  {
+    "id": "d8452483-b6bd-4cbd-aeb3-525844373f60",
+    "name": "VirusTotal",
+    "category": ["Virus Scan"],
+    "url": "https://www.virustotal.com/",
+    "description": "Herramienta en línea que analiza archivos y URLs en busca de virus y malware.",
+    "registration_required": false
+  }
+]

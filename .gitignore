@@ -6,3 +6,6 @@ node_modules/
 
 # Ignorar archivos de registro
 *.log
+
+# Ignorar archivo de notas 
+*notes.txt
