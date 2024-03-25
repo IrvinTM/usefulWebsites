@@ -9,3 +9,5 @@ node_modules/
 
 # Ignorar archivo de notas 
 *notes.txt
+
+databasecreate.sql

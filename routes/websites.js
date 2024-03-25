@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { websiteControler } from "../controlers.js/website.js"
+import { websiteControler } from "../controlers/website.js"
 
 export const webRouter = Router()
 

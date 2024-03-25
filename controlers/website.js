@@ -1,13 +1,13 @@
 import { validateWebsiteData } from "../schemas/websites.js";
-import { websiteModel } from "../models/websites.js";
+import { websiteModel } from "../models/postgres.js";
 
 export class websiteControler {
 
   static async getAll(req, res) {
     const { category } = req.query;
-    const movies = await websiteModel.getWebsites({ category });
-    if (movies) {
-      res.send(movies);
+    const websites = await websiteModel.getWebsites({ category });
+    if (websites) {
+      res.send(websites);
     } else {
       res.status(404).send("Category not found");
     }
@@ -28,9 +28,9 @@ export class websiteControler {
 
 static async getWebsiteById (req, res){
 const { id } = req.params;
-const movies = await websiteModel.getWebsiteById({id})
-if (movies) {
-    res.send(movies)
+const websites = await websiteModel.getWebsiteById({id})
+if (websites) {
+    res.send(websites)
 }
 else {
     res.status(404).send("Website not found")
