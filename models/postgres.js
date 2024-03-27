@@ -12,7 +12,9 @@ const pool = new Pool({
 });
 
 export class websiteModel {
+
   static async getWebsites({ category }) {
+    try {
     const query = "SELECT * FROM websites";
     const { rows } = await pool.query(query);
     const websites = rows;
@@ -44,6 +46,11 @@ export class websiteModel {
       return websites;
     }
   }
+  catch (error) {
+    console.log("There was an error");
+
+  }
+}
 
   static async addWebsite(websiteData) {
     const website = validateWebsiteData(websiteData);
@@ -106,6 +113,7 @@ export class websiteModel {
   }
 
   static async getWebsiteById({ id }) {
+    try{
     const query = `SELECT * FROM websites WHERE id = $1`;
     const { rows } = await pool.query(query, [id]);
     if (rows.length === 0) {
@@ -113,8 +121,13 @@ export class websiteModel {
     }
     return rows[0];
   }
+  catch (error) {
+    console.log("There was an error");
+  }
+  }
 
   static async updateWebsite({ id, websiteData }) {
+    try{
     const website = validateWebsiteData(websiteData);
     if (website.success) {
       const query = `UPDATE websites SET name = $1,
@@ -135,13 +148,22 @@ export class websiteModel {
       return rows[0];
     }
   }
+  catch (error) {
+    console.log("There was an error");
+  }
+  }
 
   static async deleteWebsite({ id }) {
+    try{
     const query = `DELETE FROM websites WHERE id = $1 RETURNING *;`;
     const { rows } = await pool.query(query, [id]);
     if (rows.length === 0) {
       return null;
     }
     return rows[0];
+  }
+  catch (error) {
+    console.log("There was an error");
+  }
   }
 }

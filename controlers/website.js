@@ -9,7 +9,7 @@ export class websiteControler {
     if (websites) {
       res.send(websites);
     } else {
-      res.status(404).send("Category not found");
+      res.status(404).send("Not found");
     }
   }
 
