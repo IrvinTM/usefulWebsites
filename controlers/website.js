@@ -18,8 +18,8 @@ export class websiteControler {
     const websiteData = validateWebsiteData(req.body)
     if (websiteData.success) {
         const newWebsite = await websiteModel.addWebsite(websiteData.data)
-        data.push(newWebsite)
-        res.send(data)
+        if(newWebsite)
+        res.send("website added")
     } 
     else {
         res.status(400).send(websiteData.error)
@@ -64,5 +64,4 @@ static async deleteWebsite (req, res){
         res.status(404).send("Website not found")
     }
 }
-
 }
