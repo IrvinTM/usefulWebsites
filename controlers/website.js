@@ -1,5 +1,5 @@
 import { validateWebsiteData } from "../schemas/websites.js";
-import { websiteModel } from "../models/websites.js";
+import { websiteModel } from "../models/postgres.js";
 
 export class websiteControler {
 

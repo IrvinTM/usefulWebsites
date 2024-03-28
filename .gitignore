@@ -11,3 +11,6 @@ node_modules/
 *notes.txt
 
 databasecreate.sql
+
+# Ignorar postgres
+cred.json

@@ -1,56 +1,81 @@
 import { randomUUID } from "node:crypto";
 import { validateWebsiteData } from "../schemas/websites.js";
+import { readJson } from "../utils.js";
+const credentials = readJson("./cred.json");
 import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "postgres",
-  port: 5432,
+  user: credentials.user,
+  host: credentials.host,
+  database: credentials.database,
+  password: credentials.password,
+  port: credentials.port,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 export class websiteModel {
-
   static async getWebsites({ category }) {
     try {
-    const query = "SELECT * FROM websites";
-    const { rows } = await pool.query(query);
-    const websites = rows;
+      const query = `SELECT
+      w.id AS website_id,
+      w.name AS website_name,
+      w.url AS website_url,
+      w.description AS website_description,
+      w.registration_required AS website_registration_required,
+      c.name AS category_name
+  FROM
+      websites w
+  JOIN
+      categories c ON w.category_id = c.id;
+  `;
+      const { rows } = await pool.query(query);
 
-    if (category) {
-      const categoryQuery = `SELECT id 
+      const websites = rows;
+
+      if (category) {
+        const categoryQuery = `SELECT id 
             FROM categories 
             WHERE LOWER(name) = LOWER($1) 
             LIMIT 1;`;
-      const { rows } = await pool.query(categoryQuery, [category]);
-      if (rows.length === 0) {
-        return null;
-      }
-      const categoryId = rows[0].id;
-      const queryWithCategory = `
-            SELECT * 
-            FROM websites 
-            WHERE category_id = $1
+        const { rows } = await pool.query(categoryQuery, [category]);
+        if (rows.length === 0) {
+          return null;
+        }
+        const categoryId = rows[0].id;
+        const queryWithCategory = `
+        SELECT 
+        w.id AS website_id,
+        w.name AS website_name,
+        w.url AS website_url,
+        w.description AS website_description,
+        w.registration_required AS website_registration_required,
+        c.name AS category_name
+    FROM 
+        websites w
+    JOIN 
+        categories c ON w.category_id = c.id
+    WHERE 
+        w.category_id = $1;
+    
         `;
-      const { rows: filteredRows } = await pool.query(queryWithCategory, [
-        categoryId,
-      ]);
-      const filteredCategories = filteredRows;
+        const { rows: filteredRows } = await pool.query(queryWithCategory, [
+          categoryId,
+        ]);
+        const filteredCategories = filteredRows;
 
-      if (filteredCategories && filteredCategories.length > 0) {
-        return filteredCategories;
+        if (filteredCategories && filteredCategories.length > 0) {
+          return filteredCategories;
+        }
+      } else {
+        return websites;
       }
-    } else {
-      return websites;
+    } catch (error) {
+      console.log("There was an error");
     }
   }
-  catch (error) {
-    console.log("There was an error");
-
-  }
-}
 
   static async addWebsite(websiteData) {
     const website = validateWebsiteData(websiteData);
@@ -113,57 +138,67 @@ export class websiteModel {
   }
 
   static async getWebsiteById({ id }) {
-    try{
-    const query = `SELECT * FROM websites WHERE id = $1`;
-    const { rows } = await pool.query(query, [id]);
-    if (rows.length === 0) {
-      return null;
-    }
-    return rows[0];
-  }
-  catch (error) {
-    console.log("There was an error");
-  }
-  }
-
-  static async updateWebsite({ id, websiteData }) {
-    try{
-    const website = validateWebsiteData(websiteData);
-    if (website.success) {
-      const query = `UPDATE websites SET name = $1,
-         url = $2, description = $3,
-         registration_required = $4
-          WHERE id = $5 RETURNING *;`;
-      const values = [
-        websiteData.name,
-        websiteData.url,
-        websiteData.description,
-        websiteData.registration_required,
-        id,
-      ];
-      const { rows } = await pool.query(query, values);
+    try {
+      const query = `SELECT
+      w.id AS website_id,
+      w.name AS website_name,
+      w.url AS website_url,
+      w.description AS website_description,
+      w.registration_required AS website_registration_required,
+      c.name AS category_name
+  FROM
+      websites w
+  JOIN
+      categories c ON w.category_id = c.id
+  WHERE
+      w.id = $1;
+  `;
+      const { rows } = await pool.query(query, [id]);
       if (rows.length === 0) {
         return null;
       }
       return rows[0];
+    } catch (error) {
+      console.log("There was an error");
     }
   }
-  catch (error) {
-    console.log("There was an error");
-  }
+
+  static async updateWebsite({ id, websiteData }) {
+    try {
+      const website = validateWebsiteData(websiteData);
+      if (website.success) {
+        const query = `UPDATE websites SET name = $1,
+         url = $2, description = $3,
+         registration_required = $4
+          WHERE id = $5 RETURNING *;`;
+        const values = [
+          websiteData.name,
+          websiteData.url,
+          websiteData.description,
+          websiteData.registration_required,
+          id,
+        ];
+        const { rows } = await pool.query(query, values);
+        if (rows.length === 0) {
+          return null;
+        }
+        return rows[0];
+      }
+    } catch (error) {
+      console.log("There was an error");
+    }
   }
 
   static async deleteWebsite({ id }) {
-    try{
-    const query = `DELETE FROM websites WHERE id = $1 RETURNING *;`;
-    const { rows } = await pool.query(query, [id]);
-    if (rows.length === 0) {
-      return null;
+    try {
+      const query = `DELETE FROM websites WHERE id = $1 RETURNING *;`;
+      const { rows } = await pool.query(query, [id]);
+      if (rows.length === 0) {
+        return null;
+      }
+      return rows[0];
+    } catch (error) {
+      console.log("There was an error");
     }
-    return rows[0];
-  }
-  catch (error) {
-    console.log("There was an error");
-  }
   }
 }
