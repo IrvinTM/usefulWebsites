@@ -1,4 +1,3 @@
-import {createRequire} from 'node:module';
 import express from 'express'
 import { readJson } from './utils.js'
 import { webRouter } from './routes/websites.js'
@@ -16,7 +15,6 @@ app.use('/websites', webRouter)
 app.use('/', drouter)
 
 const port = process.env.PORT ?? 2222;
-//comment
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

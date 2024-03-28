@@ -6,11 +6,12 @@ import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  user: credentials.user,
-  host: credentials.host,
-  database: credentials.database,
-  password: credentials.password,
-  port: credentials.port,
+  //make credentials env variables
+  user: process.env.DB_USER || credentials.user,
+  host: process.env.DB_HOST || credentials.host,
+  database: process.env.DB_DATABASE || credentials.database,
+  password: process.env.DB_PASSWORD || credentials.password,
+  port: process.env.DB_PORT || credentials.port,
   ssl: {
     rejectUnauthorized: false,
   },
