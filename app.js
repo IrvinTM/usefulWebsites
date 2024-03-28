@@ -9,7 +9,7 @@ const data = readJson('./data.json')
 const app = express()
 app.disable('x-powered-by')
 app.use(express.json())
-app.use(corsMiddleware("http://localhost:3000"))
+app.use(corsMiddleware())
 
 app.use('/websites', webRouter)
 app.use('/', drouter)
