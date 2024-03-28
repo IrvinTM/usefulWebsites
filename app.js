@@ -5,7 +5,7 @@ import { drouter } from './routes/default.js'
 import { corsMiddleware } from './middlewares/cors.js'
 const data = readJson('./data.json')
 
-
+try {
 const app = express()
 app.disable('x-powered-by')
 app.use(express.json())
@@ -19,3 +19,8 @@ const port = process.env.PORT ?? 2222;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+  
+} catch (error) {
+  console.error(error)
+}
+
