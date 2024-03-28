@@ -4,7 +4,6 @@ import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  //make credentials env variables
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
@@ -89,10 +88,10 @@ export class websiteModel {
         WHERE LOWER(name) = LOWER($1)
         LIMIT 1;`;
       const { rows } = await pool.query(categoryQuery, [newWebsite.category]);
-      if (rows[0].id !== undefined) {
-      existentCategory = rows[0].id
+      if (rows.length !== 0 || rows[0] !== undefined) {
+        existentCategory = rows[0].id;
       }
-      if (rows[0].id.length === 0) {
+      if (existentCategory === "") {
         try {
           const query = `INSERT INTO categories (id, name) VALUES ($1, $2) RETURNING *;`;
           const values = [randomUUID(), newWebsite.category];
@@ -136,6 +135,9 @@ export class websiteModel {
           return false;
         }
       }
+    }
+    else {
+      return false;
     }
   }
 
