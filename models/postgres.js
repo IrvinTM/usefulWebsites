@@ -1,17 +1,15 @@
 import { randomUUID } from "node:crypto";
 import { validateWebsiteData } from "../schemas/websites.js";
-import { readJson } from "../utils.js";
-const credentials = readJson("./cred.json");
 import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
   //make credentials env variables
-  user: process.env.DB_USER || credentials.user,
-  host: process.env.DB_HOST || credentials.host,
-  database: process.env.DB_DATABASE || credentials.database,
-  password: process.env.DB_PASSWORD || credentials.password,
-  port: process.env.DB_PORT || credentials.port,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
   ssl: {
     rejectUnauthorized: false,
   },
