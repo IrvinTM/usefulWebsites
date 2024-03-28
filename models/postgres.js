@@ -88,7 +88,7 @@ export class websiteModel {
         WHERE LOWER(name) = LOWER($1)
         LIMIT 1;`;
       const { rows } = await pool.query(categoryQuery, [newWebsite.category]);
-      const existentCategory = rows[0].id;
+      const existentCategory = rows[0].id || "";
       if (rows[0].id.length === 0) {
         try {
           const query = `INSERT INTO categories (id, name) VALUES ($1, $2) RETURNING *;`;
