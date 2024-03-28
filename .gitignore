@@ -14,3 +14,7 @@ databasecreate.sql
 
 # Ignorar postgres
 cred.json
+
+#ignore vscode folder
+
+.vscode/
