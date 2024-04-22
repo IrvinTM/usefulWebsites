@@ -8,8 +8,9 @@ const data = readJson('./data.json')
 try {
 const app = express()
 app.disable('x-powered-by')
-app.use(express.json())
 app.use(corsMiddleware())
+app.use(express.json())
+
 
 app.use('/websites', webRouter)
 app.use('/', drouter)
