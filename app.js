@@ -1,15 +1,16 @@
-import express from 'express'
+import express, {json} from 'express'
 import { readJson } from './utils.js'
 import { webRouter } from './routes/websites.js'
 import { drouter } from './routes/default.js'
 import { corsMiddleware } from './middlewares/cors.js'
 const data = readJson('./data.json')
 
+
 try {
-const app = express()
-app.disable('x-powered-by')
-app.use(corsMiddleware())
-app.use(express.json())
+  const app = express()
+  app.use(json())
+  app.use(corsMiddleware())
+  app.disable('x-powered-by')
 
 
 app.use('/websites', webRouter)
