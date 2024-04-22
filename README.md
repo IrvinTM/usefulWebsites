@@ -43,4 +43,7 @@
   
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b78f9b2 (	new file:   README.md)
