@@ -3,30 +3,28 @@
 
 #### Get all items
 
-```http
+```bash
   GET /websites
-
 ```
 
 #### Get a websites by category using query params, ex:
 
-```http
+```bash
   GET /websites?category=images
-
 ```
 
 #### Get a website by id:
 
-```http
+```bash
   GET /websites/id
 ```
 
 #### Add/Edit a website:
 
-```http
+```bash
   POST /websites
 ```
-```http
+```bash
   name: string
   category: string
   url: string
@@ -35,15 +33,6 @@
 ```
 #### Delete a website:
 
-```http
+```bash
   DELETE /websites/id
 ```
-
-
-  
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> b78f9b2 (	new file:   README.md)
